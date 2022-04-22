@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="Sounds.css">
+       
+    </head>
+    <body>
+       
+            <div class="keys">
+                <div data-keycode="65" class="key">
+                    <kbd>A</kbd>
+                    <span class="sound"></span>
+                </div>
+                <div data-keycode="66" class="key">
+                    <kbd>B</kbd>
+                    <span class="sound"></span>
+                </div>
+                <div data-keycode="67" class="key">
+                    <kbd>C</kbd>
+                    <span class="sound"></span>
+                </div>
+                <div data-keycode="68" class="key">
+                    <kbd>D</kbd>
+                    <span class="sound"></span>
+                </div>
+                <div data-keycode="69" class="key">
+                    <kbd>E</kbd>
+                    <span class="sound"></span>
+                </div>
+                <div data-keycode="70" class="key">
+                    <kbd>F</kbd>
+                    <span class="sound"></span>
+                </div>
+                <div data-keycode="71" class="key">
+                    <kbd>G</kbd>
+                    <span class="sound"></span>
+                </div>
+            </div>
+        <audio data-keycode="65" src="sounds/boom.wav"></audio>
+        <audio data-keycode="66" src="sounds/clap.wav"></audio>
+        <audio data-keycode="67" src="sounds/hihat.wav"></audio>
+        <audio data-keycode="68" src="sounds/kick.wav"></audio>
+        <audio data-keycode="69" src="sounds/openhat.wav"></audio>
+        <audio data-keycode="70" src="sounds/ride.wav"></audio>
+        <audio data-keycode="71" src="sounds/tom.wav"></audio>
+
+        <script>
+            function removeTransition(e){
+                    e.target.classList.remove('playing');
+                }
+           
+            function playSound(e){
+                const audio=document.querySelector(`audio[data-keycode="${e.keyCode}"]`);
+                const key=document.querySelector(`div[data-keycode="${e.keyCode}"]`);
+                if(!audio)
+                return;
+                audio.currentTime=0;
+                audio.play();
+                key.classList.add('playing');
+
+                const keyArray= document.querySelectorAll('.key');
+                keyArray.forEach(element=>element.addEventListener("transitionend", removeTransition));  
+            }
+            window.addEventListener('keydown', playSound);
+        </script>
+    </body>
+    
+</html>
