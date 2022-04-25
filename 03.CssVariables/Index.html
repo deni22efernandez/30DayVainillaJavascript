@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Index.css">
+    </head>
+    <body>
+        <div>
+            <h1>CSS variables & <span class='hl'>Javascript</span></h1>
+            <hr>
+        </div>
+        <div class="controls">
+            <label>Spacing</label>
+            <input type="range" name="spacing" data-valuetipe="px">
+            <label>Blur</label>
+            <input type="range" name="blur" data-valuetipe="px">
+            <label>Color</label>
+            <input type="color" name="base">
+        </div>
+    </br>
+        <div>
+            <img src="city.jpg">
+        </div>
+        <script>
+             const controls = document.querySelectorAll('.controls input');
+
+            function handleControl(){
+                const suffix = this.dataset.valuetipe || ' ';
+                document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            } 
+           
+            controls.forEach(elem=>elem.addEventListener('change', handleControl));
+            controls.forEach(elem=>elem.addEventListener('mousemove', handleControl));
+
+            
+        </script>
+    </body>
+</html>
