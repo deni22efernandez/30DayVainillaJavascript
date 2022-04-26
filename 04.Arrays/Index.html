@@ -71,6 +71,10 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    people.forEach(x=>x.split(', '));
+    people.sort((a, b)=>a>b?1:-1);
+    console.log(people);
+    
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
