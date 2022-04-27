@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./Index.css" type="text/css">
+    </head>
+    <body>
+    <div class="panels">
+        <div class="panel panel1">
+            <p>A</p>
+                <p>K</p>
+                <p>A</p>
+                <p>H</p>
+                <p>A</p>
+                <p>I</p>
+           
+        </div>
+        <div class="panel panel2">
+            <p>L</p>
+            <p>O</p>
+            <p>K</p>
+            <p>A</p>
+            <p>H</p>
+            <p>I</p>
+        </div>
+        <div class="panel panel3 ">
+            <p>O</p>
+            <p>L</p>
+            <p>U</p>
+            <p>O</p>
+            <p>L</p>
+            <p>U</p>
+        </div>
+        <div class="panel panel4 ">
+            <p>H</p>
+            <p>A</p>
+            <p>A</p>
+            <p>H</p>
+            <p>A</p>
+            <p>A</p>
+        </div>
+        <div class="panel panel5">
+            <p>A</p>
+            <p>H</p>
+            <p>O</p>
+            <p>N</p>
+            <p>U</p>
+            <p>I</p>
+        </div>
+
+    </div>
+    <script>
+        const panels= document.querySelectorAll('.panel');
+
+        function toggleOpen(){
+            this.classList.toggle('open');
+        }
+
+        function toggleActive(e){
+            if(e.propertyName.includes('flex')){
+                this.classList.toggle('open-active');
+            }           
+        }
+        panels.forEach(elem=>elem.addEventListener('click', toggleOpen));
+        panels.forEach(elem=>elem.addEventListener('transitionend', toggleActive));
+    </script>
+    </body>
+</html>
