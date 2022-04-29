@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="Index.css" type="text/css">
+    </head>
+    <body>
+        <form class="search-form">
+            <input type="text" class="search" placeholder="City or State">
+            <ul class="suggestions">
+              <li>Filter for a city</li>
+              <li>or a state</li>
+            </ul>
+          </form>
+        <script>
+        const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+        
+        const cities=[];
+        const prom = fetch(endpoint)
+                        .then(x=>x.json())
+                        .then(result => cities.push(...result));
+
+        const searchBox = document.querySelector('.search');
+        const suggestions = document.querySelector('.suggestions');
+
+        searchBox.addEventListener('change', displayMatch);       
+
+        function displayMatch(){
+            const results = findMatch(event.target.value, cities);
+           
+            const html = results.map(x=>{ 
+                //highlight the word searched
+                const regex = new RegExp(event.target.value,'gi');
+                const cityName = x.city.replace(regex, `<span class="hl">${event.target.value}</span>`);
+                const stateName = x.state.replace(regex, `<span class="hl">${event.target.value}</span>`);
+                //
+                return
+                 `<li>
+                    <span>${cityName} ${stateName}</span>
+                 </li>`}).join('');
+            suggestions.innerHTML = html;           
+        }
+
+        function findMatch(word, cities){
+            const regex = new RegExp(word, 'gi');//global case insensitive         
+            return cities.filter(x=> x.city.match(regex) || x.state.match(regex));            
+        }
+
+        </script>
+    </body>
+</html>
