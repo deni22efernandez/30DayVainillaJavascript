@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FlexBox Nav</title>
+  <title>FlexBox Mobile reordering items</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="PageStyles.css">
 </head>
 <body>
   
@@ -65,11 +65,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script>
     
-    $(function() {
+    /*$(function() {
       $('.toggleNav').on('click',function() {
         $('.flex-nav ul').toggleClass('open');
       });
-    }); 
+    }); */
+    
+    function toggle(){
+      const uls = document.querySelector('.flex-nav ul');
+      uls.classList.toggle('open');
+    }
+    const toggleNav = document.querySelector('.toggleNav');
+    toggleNav.addEventListener('click', toggle);
   </script>
 </body>
 </html>
