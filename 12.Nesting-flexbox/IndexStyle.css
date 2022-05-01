@@ -21,6 +21,7 @@ html {
   
   img {
     max-width:100%;
+    flex:1;
   }
   
   a {
@@ -32,6 +33,7 @@ html {
   }
   a:hover {
     background:rgba(0,0,0,0.4);
+   
   }
   
   
@@ -39,5 +41,31 @@ html {
     list-style: none;
     margin: 0;
     padding: 0; 
+    display:flex;
   }
   
+  .slider-nav li{
+      display:flex;
+      flex:2;
+  }
+  .slider-nav .arrow{
+      flex:1;
+  }
+  .slider-nav .arrow a {
+    font-size: 40px;
+  }
+  .slider-nav a{
+      display:flex;
+      align-items: center;
+      flex:1;
+      padding:20px 5px;
+  }
+  .slider-nav span{
+      flex:1;
+      display: block;
+      align-items: center;
+  }
+  .slider{
+    display: flex;
+}
+ 
