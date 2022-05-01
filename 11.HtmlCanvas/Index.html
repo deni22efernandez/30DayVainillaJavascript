@@ -7,6 +7,76 @@
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
+    const canvas = document.querySelector('#draw');
+    //get context to draw on
+    const ctxt = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    //color
+    ctxt.strokeStyle='#BADA55';
+    //line ends rounded
+    ctxt.lineJoin='round';
+    //when a line meets another line should be rounded
+    ctxt.lineCap = 'round';
+
+    ctxt.lineWidth = 100;
+
+    let isDrawing = false;
+    //line start
+    let lastX = 0;
+    //line end
+    let lastY = 0;
+
+    let hue=0; //hsl {h=0=red / h=360=red}
+
+    //for incrementing/decrementing linewidth
+    let direction = true;
+
+    function Draw(e){
+        if(!isDrawing)//dont draw when mouse is not douwn
+        return;
+        //start drawing
+        ctxt.beginPath();
+        ctxt.moveTo(lastX, lastY);
+        ctxt.lineTo(e.offsetX, e.offsetY);
+        
+        ctxt.stroke();
+        //update last coordenates for the lines
+        lastX=e.offsetX;
+        lastY=e.offsetY;
+        //rainbow coloring
+        ctxt.strokeStyle=`hsl(${hue}, 100%, 50%)`; //hue=color
+
+        hue++;
+
+        //increment until 100 or else will do infinitely
+        if(ctxt.lineWidth >= 50 || ctxt.lineWidth <= 1){
+            direction = !direction;
+        }
+        //increment/decrement linewidth
+        if(direction){
+            ctxt.lineWidth++;
+        }        
+        else{
+            ctxt.lineWidth--;
+        }
+        
+
+        console.log(e);
+    }
+
+    
+    canvas.addEventListener('mousedown', (e)=>{
+        isDrawing=true;
+        //update las coordenates of the lines
+        //becouse if not it will always start at 0 and 
+        //it will join lines between clicks
+        lastX = e.offsetX;
+        lastY = e.offsetY;
+    });
+    canvas.addEventListener('mousemove', Draw);
+    canvas.addEventListener('mouseup', ()=>isDrawing=false);
+    canvas.addEventListener('mouseout', ()=>isDrawing=false);
 </script>
 
 <style>
