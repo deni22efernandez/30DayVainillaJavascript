@@ -72,9 +72,4 @@ shakeButton.addEventListener('click', clearCanvas);
 const arrows = window.document.querySelectorAll('.buttons .key');
 arrows.forEach(element => {
     element.addEventListener('click', draw);
-});
-
-function getKey(e){
-    console.log(e);
-   
-}
+});   
