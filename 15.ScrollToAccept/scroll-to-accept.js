@@ -12,6 +12,5 @@ function obsCallback(payload) {
     }
 }
 
-text.addEventListener('scroll', scrollFunc);
 const observer = new IntersectionObserver(obsCallback);
 observer.observe(text.lastElementChild);
