@@ -1,3 +1,7 @@
+const buttons = document.querySelectorAll('button');
+const innerModal = document.querySelector('.modal-inner');
+const outerModal = document.querySelector('.modal-outer');
+
 function handleCardButtonClick(e) {
     const card = e.currentTarget.closest('.card');
     const imgSrc = card.querySelector('img').src;
@@ -13,11 +17,6 @@ function handleCardButtonClick(e) {
 function closeModal(e) {
     outerModal.classList.remove('open');
 }
-
-
-const buttons = document.querySelectorAll('button');
-const innerModal = document.querySelector('.modal-inner');
-const outerModal = document.querySelector('.modal-outer');
 
 buttons.forEach(x => x.addEventListener('click', handleCardButtonClick));
 
