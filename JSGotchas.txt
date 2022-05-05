@@ -1,0 +1,44 @@
+OBJECTS
+*Propiedades pueden contener -, espacios, numeros, etc
+para accederlas se usa 'square bracket notation' ej objeto['primer-nombre'], xq sino el '-' tira error (objeto.primer-nombre)
+
+*COMMA DANGLE / TRAILING COMMA: Al crear objetos y definir sus propiedades se pone una coma luego de cada prop, incluso al final d la ultima prop
+
+*Se puede agregar nuevas prop a un obejto (luego de haberlo definido), con .propnueva
+
+const wesFroze = Object.freeze(wes);
+freeze() devuelve el mismo objeto q se le paso, no crea una copia
+wesFroze y wes son objetos iguales
+Object.freeze(otroObject) no permite updetear las propiedades (INMUTABLE)
+
+*arrow functions do not scope this to the thing they are called against, and the parent scope will inherit that.
+
+REFERENCE VS VALUE TIPES
+
+*String es value tipe
+*objects, arrays reference tipes
+  when objects and arrays are copied by reference, (like you did with const person3 = person1;), you are not taking a copy of it.
+You are simply creating a variable that references, or points to, the original variable instead of making a copy of it.
+si se updetea una prop en person3, tmb cambia para person1
+ 
+That means that if you modify an object or an array that is passed into a function inside of the function, know that you may be accidentally modifying data that lives outside of it.
+
+Para copiar un objeto en vexz d referenciarlo usar:
+-Spread operator const person3={...person1}
+-const person3 = Object.assign({}, person1);
+Pero solo copiia one level deep (SHALLOW COPY), las prop q estan mas deep las pasa como referencia, para solucionar eso usar utility library (LODASH)
+_.cloneDeep(value)
+
+<script src="https://unpkg.com/lodash@4.17.15/lodash.js"></script>
+
+SPREAD OP merges objects
+const inventory = { ...meatInventory, ...veggieInventory };
+
+ARRAY
+Mutate methods
+- reverse()
+-push() - añade al final -- inmutable way = const newArray=[...array, smthing]
+-unshift() - añade al principio || const newArray = [something, ...array]
+-splice() -- method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.20:13 04/05/202220:26 04/05/2022
+Inmutable methods
+-slice() -- toma porcion de un array sin mutarlo

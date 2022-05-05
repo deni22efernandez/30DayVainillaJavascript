@@ -47,16 +47,27 @@
     // Array.of();
 
     // Make a function that creates a range from x to y with Array.from();
+    function createRange(start, end){
+      const arrayFrom = Array.from({length: start + end}, function(item, index){return index;});
+      return arrayFrom;
+    }
+  //  console.log(createRange(3,7));
 
     // Check if the last array you created is really an array with Array.isArray();
+   // console.log(Array.isArray(createRange(3,7)));
 
     // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
-
+    const entriesArray = Object.entries(meats);
+    const keysArray = Object.keys(meats);
+    const valuesArray = Object.values(meats);
+   // console.log(valuesArray);
     /*
       Instance Methods
     */
 
     // Display all bun types with " or " - use join()
+ 
+   // console.log(buns.join(' or '));
 
     // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into a string
     const words =  "hot dogs,hamburgers,sausages,corn";
@@ -75,7 +86,11 @@
     toppings.unshift(firstItem);
     
     // Do the last four,but immutable (with spreads and new variables)
+    const last = toppings.slice(toppings.length-1);
     
+    const first = toppings.slice(0);
+    console.log(first);
+
     
     
     // Make a copy of the toppings array with slice()
@@ -107,7 +122,7 @@
    
    // find all ratings that talk about a burger with filter()
    const burgerComments = feedback.filter(x=>x.comment.includes('burger') || x.comment.includes('BURGER'));
-   console.table(burgerComments);
+   //console.table(burgerComments);
    
    // Remove the one star rating however you like!
    
@@ -115,15 +130,20 @@
    
    
    // check if there is at least 5 of one type of meat with some()
- 
+   const meatsArray = Object.values(meats);
+   console.log(meatsArray.some(x=>x===5));
+
     // make sure we have at least 3 of every meat with every()
+    
+    console.log(meatsArray.every(x=>x>=3));
     // sort the toppings alphabetically with sort()
     toppings.sort();
-    console.log(toppings);
+    //console.log(toppings);
     // sort the order totals from most expensive to least with .sort()
     orderTotals.sort((a,b)=> a > b ? -1 : 1);
     // Sort the prices with sort()
-   
+    const pricesArray = Object.values(prices);
+    console.log(pricesArray.sort());
     /*
       Looping Methods (next)
     */
