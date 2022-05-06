@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Generator</title>
+  <link rel="stylesheet" href="../base.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      
+    }
+
+    .typer {
+      margin: 0 auto;
+      background: white;
+      width: 500px;
+      padding: 2rem;
+      padding: 2rem;
+      border-radius: 3px;
+      display: grid;
+    }
+
+    textarea {
+      width: 100%;
+    }
+    .italic{
+        font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="typer">
+    <label for="Italic">
+      <input type="radio" value="italic" id="italic" name="filter" checked>
+      Italic
+    </label>
+    <label for="Uppercase">
+      <input type="radio" value="uppercase" id="uppercase" name="filter">
+      Uppercase
+    </label>
+    <label for="UpperLower">
+      <input type="radio" value="upperlower" id="upperlower" name="filter">
+      Upper-lower cases
+    </label></br>
+    <textarea name="text">so I was thinking about going to the store.</textarea>
+    <p class="result"></p>
+  </div>
+
+  <script src="styling-strings.js"></script>
+</body>
+
+</html>
