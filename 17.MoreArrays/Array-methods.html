@@ -147,6 +147,37 @@
     /*
       Looping Methods (next)
     */
+    const text = `
+    [0, 1, 2, 3, 4].reduce( (accumulator, currentValue, currentIndex, array) => accumulator + currentValue);
+    If you were to provide an initialValue as the second argument to reduce(), the result would look like this:
+    The value returned by reduce() in this case would be 20.
+    Examples
+    Sum all the values of an array`;
+    function isValidChar(x){
+      return x.match(/[a-z0-9]/i);
+    }
+    function toLower(x){
+      return x.toLowerCase();
+    }
+    function toReduce(counts, char){
+      counts[char] ? counts[char] = counts[char] + 1 : counts[char] = 1;
+      return counts;
+     }
+    const t = text.split('')
+                  .filter(isValidChar)
+                  .map(toLower)
+                  .reduce(toReduce,{});
+    console.log(t);
+    
+     //lambdas
+    const result = text.split('')
+                       .filter(x=>x.match(/[a-z0-9]/i))
+                       .map(x=>x.toLowerCase())
+                       .reduce(function(counter, char){
+                          counter[char]?counter[char]=counter[char]+1:counter[char]=1;
+                          return counter;
+                       },{});
+    console.log(result);
 
   </script>
 </body>
