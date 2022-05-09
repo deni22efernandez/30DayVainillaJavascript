@@ -1,0 +1,102 @@
+OBJECTS
+*Propiedades pueden contener -, espacios, numeros, etc
+para accederlas se usa 'square bracket notation' ej objeto['primer-nombre'], xq sino el '-' tira error (objeto.primer-nombre)
+
+*COMMA DANGLE / TRAILING COMMA: Al crear objetos y definir sus propiedades se pone una coma luego de cada prop, incluso al final d la ultima prop
+
+*Se puede agregar nuevas prop a un obejto (luego de haberlo definido), con .propnueva
+
+const wesFroze = Object.freeze(wes);
+freeze() devuelve el mismo objeto q se le paso, no crea una copia
+wesFroze y wes son objetos iguales
+Object.freeze(otroObject) no permite updetear las propiedades (INMUTABLE)
+
+*arrow functions do not scope this to the thing they are called against, and the parent scope will inherit that.
+
+REFERENCE VS VALUE TIPES
+
+*String es value tipe
+*objects, arrays reference tipes
+  when objects and arrays are copied by reference, (like you did with const person3 = person1;), you are not taking a copy of it.
+You are simply creating a variable that references, or points to, the original variable instead of making a copy of it.
+si se updetea una prop en person3, tmb cambia para person1
+ 
+That means that if you modify an object or an array that is passed into a function inside of the function, know that you may be accidentally modifying data that lives outside of it.
+
+Para copiar un objeto en vexz d referenciarlo usar:
+-Spread operator const person3={...person1}
+-const person3 = Object.assign({}, person1);
+Pero solo copiia one level deep (SHALLOW COPY), las prop q estan mas deep las pasa como referencia, para solucionar eso usar utility library (LODASH)
+_.cloneDeep(value)
+
+<script src="https://unpkg.com/lodash@4.17.15/lodash.js"></script>
+
+SPREAD OP merges objects
+const inventory = { ...meatInventory, ...veggieInventory };
+
+ARRAY
+Mutable methods
+- reverse()
+-push() - añade al final -- inmutable way = const newArray=[...array, smthing]
+-unshift() - añade al principio || const newArray = [something, ...array]
+-splice() -- method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place
+-pop()
+
+Inmutable methods
+-slice() -- toma porcion de un array sin mutarlo
+
+ARRAY STATIC METHODS (metodos q viven en Array)
+Array.isArray()--> para checkear si un objeto es un array
+Array.from()-->toma dos params: length y una funcion(item,index)=>return index
+           Se usa para crear ranges
+Array.of()--> crea un array con las variables q le pasas
+
+ARRAY INSTANCE METHODS(Metodos q viven en todos los arrays)
+pop()
+push()
+shift()
+unshift()
+join()
+split()
+
+OBJECT STATIC METHODS
+Object.entries()-->devuelve un array con los keys+values del obj
+Object.keys()--> solo devieve un array con las keys
+Object.values()--> array de values d un objeto
+Sirven para crear arrays a partir d las prop de un objeto
+
+HIGH ORDER FUNCTIONS
+Funciones q retornan funciones
+
+PURE FUNCTIONS --> transforman data q reciben, pueden recibir otras funciones como parametros q hagan el trabajo en vez de lambdas
+ Se usan en lugar d foreach ya q son mas eficientes...FOREACH ES un side effect function {
+We have the callback method within the forEach, which relies on an external variable being made. So we have sort of reached outside of it. That is what is referred to as a side effect which is where you update a variable that exists outside of the function.
+}
+
+*MAP
+Recibe un array y devuelve otro array con el mismo length pero modificado
+puede usar todo tipo de data
+Automapper
+
+FILTER
+Filtra data en un array, siempre devuelve un array
+
+FIND
+Finltra data pero devuelve solo un objeto
+
+REDUCE
+It takes in an array of data (just like map and filter) and it will return to you a result of or a single value.
+
+const reduce = array.reduce(acumulator, currentValue)=>acumulator+currentValue
+
+const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
+console.log(totalInventoryPrice);
+
+*se puede hacer con foreach loop pero deveria crear una variable total y updetearla (sideeffect)
+
+FOR OF LOOP--> sequencing promises
+	       = foreach solo q sin index y no c puede usar para filtrar
+
+FOR IN LOOP-->looping over keys of an object (=Object.key())
+*if you need to grab the prototype properties and methods, then you can use a for in loop to grab those.
+*However if you do not need to grab those, you're fine with just using Object.entries
