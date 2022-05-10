@@ -18,9 +18,9 @@ function handleSubmit(e){
 
 function displayItems(){
     let html = items.map(x=>`<li class='shopping-item'>
-    <input type='checkbox' name='check'>
+    <input type="checkbox" value="${x.id}" ${x.completed ?'checked':''}>
     <span>${x.name}${x.id}</span>
-    <button aria-label='remove ${x.name}' value=${x.id}>&times;</button>
+    <button aria-label='remove ${x.name}' value="${x.id}">&times;</button>
     </li>`).join('');
     uls.innerHTML = html;
 }
@@ -41,11 +41,22 @@ function deleteButton(id){
     items = items.filter(x=>x.id!=id);
     uls.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
+
+function markAsCompleted(id){
+    let comp = items.find(x=>x.id===id);
+    comp.completed=!comp.completed;
+    uls.dispatchEvent(new CustomEvent('itemsUpdated'));
+}
+
 form.addEventListener('submit', handleSubmit);
 uls.addEventListener('itemsUpdated', displayItems);
 uls.addEventListener('itemsUpdated', mirrorToLocalStorage);
 uls.addEventListener('click', (e)=>{
     if(e.target.matches('button'))
     deleteButton(parseInt(e.target.value));
+
+    if(e.target.matches('input[type="checkbox"]')){
+        markAsCompleted(parseInt(e.target.value));
+    }
 });
 restoreFromLocalStorage();
