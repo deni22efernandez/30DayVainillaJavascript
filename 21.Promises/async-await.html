@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>         
+        <script>
+            async function Wait(ms = 0){
+                return await new Promise(resolve=>{
+                    setTimeout(resolve, ms);
+                });
+            }
+             function makePizzaAsync(toppings=[]){
+                let miliseconds = 500 + (toppings.length*5000);
+                //console.log(miliseconds);
+                 Wait(miliseconds).then(()=>{
+                    console.log(`Pizza with toppings: ${toppings.join(' ')} is ready!`);
+                });
+            }
+            console.log('Its pizza time!')
+            Wait(1000).then(()=>console.log('Wait for them...'));
+            const pizza1 =  makePizzaAsync(['cheese', 'olives', 'onions', 'tomato sauce']);
+            const pizza2 =  makePizzaAsync(['cheese', 'olives']);
+            const pizza3 =  makePizzaAsync(['cheese', 'olives', 'peperonni']);
+           
+        </script>
+    </body>
+</html>

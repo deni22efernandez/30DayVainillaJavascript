@@ -11,7 +11,7 @@ function makePizza(toppings){
 
     
 }
-makePizza(['pineapple','cheese', 'peperoni','olives'])
+makePizza(['cheese', 'peperoni','olives'])
 .then(pizza=>{
     console.log(pizza);
     return makePizza(['olives','onion','egg']);
